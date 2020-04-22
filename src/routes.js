@@ -17,7 +17,8 @@
 */
 import Dashboard from "views/Dashboard.jsx";
 import UserProfile from "views/UserProfile.jsx";
-import TableList from "views/TableList.jsx";
+import UserList from "views/UserList.jsx";
+import MerchantList from "views/MerchantList.jsx";
 import Typography from "views/Typography.jsx";
 import Icons from "views/Icons.jsx";
 import Maps from "views/Maps.jsx";
@@ -33,17 +34,24 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/user",
-    name: "User Profile",
+    path: "/account",
+    name: "Account",
     icon: "pe-7s-user",
     component: UserProfile,
     layout: "/admin",
   },
   {
-    path: "/table",
-    name: "Table List",
+    path: "/merchantlist",
+    name: "Merchant List",
     icon: "pe-7s-note2",
-    component: TableList,
+    component: MerchantList,
+    layout: "/admin"
+  },
+  {
+    path: "/userlist",
+    name: "User List",
+    icon: "pe-7s-users",
+    component: UserList,
     layout: "/admin"
   },
   {
@@ -58,13 +66,6 @@ const dashboardRoutes = [
     name: "Icons",
     icon: "pe-7s-science",
     component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "pe-7s-map-marker",
-    component: Maps,
     layout: "/admin"
   },
   {
