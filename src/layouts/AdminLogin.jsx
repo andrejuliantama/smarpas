@@ -25,7 +25,7 @@ class UserLogin extends Component{
                         <Col lg md={6}>
                             <Card 
                                 border="primary"
-                                title="User Sign In"
+                                title="Admin Sign In"
                                 hCenter="text-center"
                                 content={
                                     <form >
@@ -47,7 +47,7 @@ class UserLogin extends Component{
                                             </div>
                                         </div>
 
-                                        <Button bsStyle="info" fill type="submit" href="#">
+                                        <Button bsStyle="info" fill type="submit" href="/admin/dashboard">
                                             Login
                                         </Button>
                                         <p className="forgot-password text-right">
