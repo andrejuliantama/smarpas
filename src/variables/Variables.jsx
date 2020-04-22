@@ -266,16 +266,17 @@ var style = {
 // // // For tables
 // //
 //
-const thArray = ["ID", "Name", "Salary", "Country", "City"];
-const tdArray = [
-  ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-  ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-  ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-  ["4", "Philip Chaney", "$38,735", "Korea, South", "Overland Park"],
-  ["5", "Doris Greene", "$63,542", "Malawi", "Feldkirchen in Kärnten"],
-  ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
+const thMerchant = ["ID", "Merchant", "Nama Pengelola", "NIK", "No. Hanphone", "No. Rekening", "Kode Bank"];
+const tdMerchant = [
+  ["1", "SOIKON", "Rendi Kristoper", "5271231810220007", "081312332100", "5257770099", "123"],
 ];
 
+const thUser = ["ID", "NIM", "Balance"]
+const tdUser = [
+  ["1", "18217006", "50000"],
+  ["2", "18217039", "100000"],
+  ["3", "18217040", "25000"]
+]
 //
 // //
 // // // For icons
@@ -600,8 +601,10 @@ var legendBar = {
 
 module.exports = {
   style, // For notifications (App container and Notifications view)
-  thArray,
-  tdArray, // For tables (TableList view)
+  thMerchant,
+  tdMerchant, // For tables (TableList view)
+  thUser,
+  tdUser,
   iconsArray, // For icons (Icons view)
   dataPie,
   legendPie,

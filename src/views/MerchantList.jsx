@@ -19,7 +19,7 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import Card from "components/Card/Card.jsx";
-import { thArray, tdArray } from "variables/Variables.jsx";
+import { thMerchant, tdMerchant } from "variables/Variables.jsx";
 
 class TableList extends Component {
   render() {
@@ -29,21 +29,21 @@ class TableList extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Striped Table with Hover"
-                category="Here is a subtitle for this table"
+                title="Merchant List"
+                category="Institut Teknologi Bandung"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
                   <Table striped hover>
                     <thead>
                       <tr>
-                        {thArray.map((prop, key) => {
+                        {thMerchant.map((prop, key) => {
                           return <th key={key}>{prop}</th>;
                         })}
                       </tr>
                     </thead>
                     <tbody>
-                      {tdArray.map((prop, key) => {
+                      {tdMerchant.map((prop, key) => {
                         return (
                           <tr key={key}>
                             {prop.map((prop, key) => {
@@ -69,13 +69,13 @@ class TableList extends Component {
                   <Table hover>
                     <thead>
                       <tr>
-                        {thArray.map((prop, key) => {
+                        {thMerchant.map((prop, key) => {
                           return <th key={key}>{prop}</th>;
                         })}
                       </tr>
                     </thead>
                     <tbody>
-                      {tdArray.map((prop, key) => {
+                      {tdMerchant.map((prop, key) => {
                         return (
                           <tr key={key}>
                             {prop.map((prop, key) => {

@@ -21,9 +21,7 @@ import UserList from "views/UserList.jsx";
 import MerchantList from "views/MerchantList.jsx";
 import Typography from "views/Typography.jsx";
 import Icons from "views/Icons.jsx";
-import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
-import Upgrade from "views/Upgrade.jsx";
 
 const dashboardRoutes = [
   {
