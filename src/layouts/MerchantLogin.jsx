@@ -20,7 +20,7 @@ class UserLogin extends Component{
                         <Col lg md={6}>
                             <Card 
                                 border="primary"
-                                title="User Sign In"
+                                title="Merchant Sign In"
                                 hCenter="text-center"
                                 content={
                                     <form >
