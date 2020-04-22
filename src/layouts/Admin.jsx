@@ -64,8 +64,7 @@ class Admin extends Component {
       title: <span data-notify="icon" className="pe-7s-gift" />,
       message: (
         <div>
-          Welcome to <b>Smarpas Admin Dashboard</b> - A prototype
-          by Kelompok 4.
+          Ini adalah notifikasi
         </div>
       ),
       level: level,
