@@ -22,9 +22,39 @@ class UserLogin extends Component{
             <div className="content">
                 <container fluid>
                     <Row className="justify-content-md-center">
-                        <Col md="auto">
-                            <Card
-                                title="Login"
+                        <Col lg md={6}>
+                            <Card 
+                                border="primary"
+                                title="User Sign In"
+                                hCenter="text-center"
+                                content={
+                                    <form >
+                                        
+                                        <div className="form-group">
+                                            <label> Username</label>
+                                            <input type="email" className="form-control" placeholder="Enter Username" />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label>Password</label>
+                                            <input type="password" className="form-control" placeholder="Enter password" />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <div className="custom-control custom-checkbox">
+                                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                                <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                                            </div>
+                                        </div>
+
+                                        <Button bsStyle="info" fill type="submit" href="/">
+                                            Login
+                                        </Button>
+                                        <p className="forgot-password text-right">
+                                            Forgot <a href="#">password?</a>
+                                        </p>
+                                    </form>
+                                }
                             />
                         </Col>
                     </Row>
