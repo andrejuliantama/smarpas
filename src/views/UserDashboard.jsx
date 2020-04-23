@@ -82,7 +82,8 @@ class UserDashboard extends Component {
       console.log(response.json());
     })
     .catch(function (error) {
-      document.getElementById('msg').value=error.data;
+      console.log(error.toJSON())
+      document.getElementById('msg').value=error.message;
       console.log(error);
     });
     event.preventDefault();

@@ -17,13 +17,14 @@
 */
 import React, { Component } from "react";
 import { Grid, Row, Col, Table, Button, Modal } from "react-bootstrap";
-import { th, td } from "variables/UserVariables.jsx";
+
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import axios from "axios";
 
 class MerchantDashboard extends Component {
+  
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -65,7 +66,7 @@ class MerchantDashboard extends Component {
         console.log(response.json());
       })
       .catch(function (error) {
-        document.getElementById('msg').innerHTML=error.message;
+        document.getElementById('msg').innerHTML=error.response.data;
         console.log(error);
       });
       event.preventDefault();
@@ -73,9 +74,36 @@ class MerchantDashboard extends Component {
       const user = {
         transaction: this.state.transaction
       };
-  };
+    
+    };
 
+    componentDidMount() {
+      axios.get('https://smarpas.xyz/listTransaction.php', {
+        params: {
+          merchantid: 1
+        }
+      })
+        .then(res => {
+          console.log(res);
+          const transaction = res.data;
+          this.setState({ transaction });
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally(function () {
+          console.log("Request Done")
+        });
+    }
+  
   render() {
+    const {transaction} = this.state.transaction
+    const th = ["ID", "Customer", "Amount", "MerchantID", "Type", "Status", "Invoice ID"];
+    // const td = this.state.transaction
+    const td = [
+      ["1", "18217006", "1000", "1", "QRIS (1)", "Success", "350246094"],
+      ["1", "18217006", "5000", "1", "SMARPAS (1)", "Success", "350246094"]
+    ];
     return (
       <div className="content">
         <Grid fluid>
@@ -170,10 +198,11 @@ class MerchantDashboard extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Transaction History"
+                title="Transaction"
                 category="Institut Teknologi Bandung"
                 ctTableFullWidth
                 ctTableResponsive
+                
                 content={
                   <Table striped hover>
                     <thead>
