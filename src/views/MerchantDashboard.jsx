@@ -21,6 +21,7 @@ import { th, td } from "variables/UserVariables.jsx";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+import axios from "axios";
 
 class MerchantDashboard extends Component {
   createLegend(json) {
@@ -44,6 +45,54 @@ class MerchantDashboard extends Component {
   hideModal = () => {
     this.setState({ showCreate: false, showConfirm: false });
   };
+
+  state = {
+    user: [],
+    transaction: []
+  }
+  componentDidMount() {
+    axios.get('https://smarpas.xyz/getBalance.php', {
+      params: {
+        nim: 18217006
+      }
+    })
+      .then(res => {
+        console.log(res);
+        const user = res.data;
+        this.setState({ user });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        console.log("Request Done")
+      });
+  }
+
+
+  handleChange = event => {
+    this.setState({ transaction: event.target.value });
+  }
+
+  handleSubmit = event =>  {
+    axios.post('https://smarpas.xyz/createTransaction.php', {
+      merchantid: 1,
+      amount: parseInt(document.getElementById('nominal').value),
+    })
+    .then(function (response) {
+      console.log(response.json());
+    })
+    .catch(function (error) {
+      document.getElementById('msg').value=error;
+      console.log(error);
+    });
+    event.preventDefault();
+
+    const user = {
+      transaction: this.state.transaction
+    };
+  };
+
   render() {
     return (
       <div className="content">
@@ -74,6 +123,7 @@ class MerchantDashboard extends Component {
                       properties = {[
                           {
                               label : "Nominal",
+                              id : "nominal",
                               type : "number",
                               bsClass : "form-control",
                               placeholder : "Nominal"
@@ -91,7 +141,7 @@ class MerchantDashboard extends Component {
                     <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                       Cancel
                     </Button>
-                    <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
+                    <Button className="btn btn-info btn-fill" type="submit" onClick={this.handleSubmit}>
                       Create
                     </Button>
                   </Modal.Footer>
@@ -127,9 +177,9 @@ class MerchantDashboard extends Component {
                       Cancel
                     </Button>
                     <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
-                      Create
+                      Confirm
                     </Button>
-                    
+                    <p className="pull-left" id="msg"></p>
                   </Modal.Footer>
                 </Modal>
               </p>

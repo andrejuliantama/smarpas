@@ -73,15 +73,16 @@ class UserDashboard extends Component {
     this.setState({ pay: event.target.value });
   }
 
-  handleSubmit = event => {
+  handleSubmit = event =>  {
     axios.post('https://smarpas.xyz/payTransaction.php', {
-      invoiceId: document.getElementById('invoiceId').value,
+      invoiceId: parseInt(document.getElementById('invoiceId').value),
       nim: 18217006
     })
     .then(function (response) {
-      console.log(response.data);
+      console.log(response.json());
     })
     .catch(function (error) {
+      document.getElementById('msg').value=error.data;
       console.log(error);
     });
     event.preventDefault();
@@ -114,7 +115,7 @@ class UserDashboard extends Component {
                   <Modal.Title>Pay Transaction</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <FormInputs onSubmit={this.handleSubmit}
+                  <FormInputs 
                     ncols = {["col-md-5" , "col-md-3"]}
                     properties = {[
                         {
@@ -137,9 +138,10 @@ class UserDashboard extends Component {
                   <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                     Cancel
                   </Button>
-                  <Button className="btn btn-info btn-fill" type="submit" >
+                  <Button className="btn btn-info btn-fill" type="submit" onClick={this.handleSubmit}>
                     Pay
                   </Button>
+                   <p className="pull-left" id='msg'></p>
                 </Modal.Footer>
               </Modal>
             </Col> 
