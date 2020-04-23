@@ -21,6 +21,7 @@ import { th, td } from "variables/UserVariables.jsx";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+import axios from "axios";
 
 class UserDashboard extends Component {
   createLegend(json) {
@@ -42,16 +43,66 @@ class UserDashboard extends Component {
   hideModal = () => {
     this.setState({ show: false });
   };
+
+  
+  state = {
+    user: [],
+    pay: []
+  }
+  componentDidMount() {
+    axios.get('https://smarpas.xyz/getBalance.php', {
+      params: {
+        nim: 18217006
+      }
+    })
+      .then(res => {
+        console.log(res);
+        const user = res.data;
+        this.setState({ user });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        console.log("Request Done")
+      });
+  }
+
+
+  handleChange = event => {
+    this.setState({ pay: event.target.value });
+  }
+
+  handleSubmit = event => {
+    axios.post('https://smarpas.xyz/payTransaction.php', {
+      invoiceId: document.getElementById('invoiceId').value,
+      nim: 18217006
+    })
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    event.preventDefault();
+
+    const user = {
+      pay: this.state.pay
+    };
+  };
+
+
   render() {
+    const {user} = this.state.user
     return (
-      <div className="content">
+      <div className="content" >
         <Grid fluid>
           <Row>
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-info" />}
-                statsText="Active Balance"
-                statsValue="Rp100.000"
+                statsText="Active Balance (Rp)"
+                statsValue= {this.state.user.balance}
                 statsIcon={"Pay a Transaction"}
                 statsIconText=
                 <Button size="lg" className="btn btn-info btn-fill pull-right" type="submit" onClick={this.showModal}>
@@ -60,23 +111,18 @@ class UserDashboard extends Component {
               />
               <Modal show={this.state.show}>
                 <Modal.Header>
-                  <Modal.Title>Top Up</Modal.Title>
+                  <Modal.Title>Pay Transaction</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <FormInputs
-                    ncols = {["col-md-5" , "col-md-3" , "col-md-4"]}
+                  <FormInputs onSubmit={this.handleSubmit}
+                    ncols = {["col-md-5" , "col-md-3"]}
                     properties = {[
                         {
-                            label : "NIM",
-                            type : "number",
-                            bsClass : "form-control",
-                            placeholder : "Nim",
-                        },
-                        {
                             label : "Invoice ID",
+                            id : "invoiceId",
                             type : "text",
                             bsClass : "form-control",
-                            placeholder : "Nominal"
+                            placeholder : "Invoice ID"
                         },
                         {
                             label : "PIN",
@@ -91,7 +137,7 @@ class UserDashboard extends Component {
                   <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                     Cancel
                   </Button>
-                  <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
+                  <Button className="btn btn-info btn-fill" type="submit" >
                     Pay
                   </Button>
                 </Modal.Footer>

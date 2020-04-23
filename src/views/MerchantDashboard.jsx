@@ -129,6 +129,7 @@ class MerchantDashboard extends Component {
                     <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
                       Create
                     </Button>
+                    
                   </Modal.Footer>
                 </Modal>
               </p>
