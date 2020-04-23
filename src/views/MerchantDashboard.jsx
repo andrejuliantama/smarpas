@@ -49,7 +49,8 @@ class MerchantDashboard extends Component {
 
   state = {
     user: [],
-    transaction: []
+    transaction: [],
+    exports: []
   }
   componentDidMount() {}
 
@@ -66,7 +67,7 @@ class MerchantDashboard extends Component {
         console.log(response.json());
       })
       .catch(function (error) {
-        document.getElementById('msg').innerHTML=error.response.data;
+        alert("Error: Amount diantara 1000 - 1.000.000");
         console.log(error);
       });
       event.preventDefault();
@@ -85,7 +86,16 @@ class MerchantDashboard extends Component {
       })
         .then(res => {
           console.log(res);
-          const transaction = res.data;
+          var arrayObj = res.data.data;
+          
+          for (var i = 0; i < arrayObj.length; i++) {
+            arrayObj[i][0] = arrayObj[i].ID;
+            delete arrayObj[i].ID;
+            arrayObj[i][1] = arrayObj[i].dompetID;
+            delete arrayObj[i].dompetID;
+          };
+
+          const transaction = arrayObj;
           this.setState({ transaction });
         })
         .catch(function (error) {
@@ -94,16 +104,35 @@ class MerchantDashboard extends Component {
         .finally(function () {
           console.log("Request Done")
         });
-    }
+      }
+
+    
   
   render() {
-    const {transaction} = this.state.transaction
+    const transaction = this.state.transaction
     const th = ["ID", "Customer", "Amount", "MerchantID", "Type", "Status", "Invoice ID"];
+    
+    
     // const td = this.state.transaction
+    // const trx = Object.values(this.state.transaction)
+
+    // const trxx = trx.map((item, key) =>
+    //   <li key={item.id}>{item.name}</li>
+    // );
+
     const td = [
       ["1", "18217006", "1000", "1", "QRIS (1)", "Success", "350246094"],
       ["1", "18217006", "5000", "1", "SMARPAS (1)", "Success", "350246094"]
     ];
+
+    // const e = trx[0]
+    
+    // console.log(trx)
+    // console.log(td)
+  
+    // const abc = Object.values(this.state.transaction)
+    // console.log(Object.values.abc)
+    // console.log(Object.values.e)
     return (
       <div className="content">
         <Grid fluid>

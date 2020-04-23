@@ -21,6 +21,8 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import StatsCard from "components/StatsCard/StatsCard";
 import Card from "components/Card/Card.jsx";
 import { thMerchant, tdMerchant } from "variables/Variables.jsx";
+import axios from "axios";
+
 
 
 
@@ -34,6 +36,27 @@ class TableList extends Component {
   hideModal = () => {
     this.setState({ show: false });
   };
+  state = {
+    exports: []
+  }
+  handleExport = event => { 
+    axios.get('https://smarpas.xyz/exportTransaction.php', {
+      params: {
+        merchantid: parseInt(document.getElementById('id').value)
+      }
+    })
+      .then(res => {
+        console.log(res);
+        const exports = res.data;
+        this.setState({ exports });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        console.log("Request Done")
+      });
+    };
   render() {
     return (
       <div className="content">
@@ -70,19 +93,14 @@ class TableList extends Component {
               </Modal.Header>
               <Modal.Body>
                 <FormInputs
-                  ncols = {["col-md-5" , "col-md-3" , "col-md-4"]}
+                  ncols = {["col-md-5" , "col-md-3"]}
                   properties = {[
                       {
                           label : "ID",
+                          id: "id",
                           type : "number",
                           bsClass : "form-control",
-                          placeholder : "Nim",
-                      },
-                      {
-                          label : "Nama Merchant",
-                          type : "text",
-                          bsClass : "form-control",
-                          placeholder : "Nominal"
+                          placeholder : "Merchant ID",
                       },
                       {
                           label : "PIN",
@@ -97,7 +115,7 @@ class TableList extends Component {
                 <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                   Cancel
                 </Button>
-                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
+                <Button className="btn btn-info btn-fill" type="submit" onClick={this.handleExport}>
                   Export CSV
                 </Button>
               </Modal.Footer>
