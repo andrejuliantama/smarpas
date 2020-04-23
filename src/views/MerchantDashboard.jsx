@@ -50,47 +50,29 @@ class MerchantDashboard extends Component {
     user: [],
     transaction: []
   }
-  componentDidMount() {
-    axios.get('https://smarpas.xyz/getBalance.php', {
-      params: {
-        nim: 18217006
-      }
-    })
-      .then(res => {
-        console.log(res);
-        const user = res.data;
-        this.setState({ user });
+  componentDidMount() {}
+
+    handleChange = event => {
+      this.setState({ transaction: event.target.value });
+    }
+
+    handleSubmit = event =>  {
+      axios.post('https://smarpas.xyz/createTransaction.php', {
+        merchantid: 1,
+        amount: parseInt(document.getElementById('nominal').value),
+      })
+      .then(function (response) {
+        console.log(response.json());
       })
       .catch(function (error) {
+        document.getElementById('msg').innerHTML=error.message;
         console.log(error);
-      })
-      .finally(function () {
-        console.log("Request Done")
       });
-  }
+      event.preventDefault();
 
-
-  handleChange = event => {
-    this.setState({ transaction: event.target.value });
-  }
-
-  handleSubmit = event =>  {
-    axios.post('https://smarpas.xyz/createTransaction.php', {
-      merchantid: 1,
-      amount: parseInt(document.getElementById('nominal').value),
-    })
-    .then(function (response) {
-      console.log(response.json());
-    })
-    .catch(function (error) {
-      document.getElementById('msg').value=error;
-      console.log(error);
-    });
-    event.preventDefault();
-
-    const user = {
-      transaction: this.state.transaction
-    };
+      const user = {
+        transaction: this.state.transaction
+      };
   };
 
   render() {

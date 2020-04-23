@@ -20,6 +20,7 @@ import { Grid, Row, Col, Table, Button, Modal } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import { thUser, tdUser } from "variables/Variables.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
+import axios from "axios";
 
 class UserList extends Component {
   state = { show: false };
@@ -31,7 +32,32 @@ class UserList extends Component {
   hideModal = () => {
     this.setState({ show: false });
   };
+  
+  componentDidMount() {}
 
+    handleChange = event => {
+      this.setState({ transaction: event.target.value });
+    }
+
+    handleSubmit = event =>  {
+      axios.post('https://smarpas.xyz/topup.php', {
+        nim: parseInt(document.getElementById('nim').value),
+        amount: parseInt(document.getElementById('amount').value),
+      })
+      .then(function (response) {
+        console.log(response.json());
+      })
+      .catch(function (error) {
+        document.getElementById('msg').value=error;
+        console.log(error);
+      });
+      event.preventDefault();
+
+      const user = {
+        transaction: this.state.transaction
+      };
+  };
+  
   render() {
     return (
       <div className="content">
@@ -72,12 +98,14 @@ class UserList extends Component {
                   properties = {[
                       {
                           label : "NIM",
+                          id : "nim",
                           type : "number",
                           bsClass : "form-control",
                           placeholder : "Nim",
                       },
                       {
                           label : "Nominal",
+                          id: "amount",
                           type : "number",
                           bsClass : "form-control",
                           placeholder : "Nominal"
@@ -95,7 +123,7 @@ class UserList extends Component {
                 <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                   Cancel
                 </Button>
-                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href='https://google.com'}>
+                <Button className="btn btn-info btn-fill" type="submit" onClick={this.handleSubmit}>
                   Top Up
                 </Button>
               </Modal.Footer>
