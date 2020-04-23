@@ -115,7 +115,7 @@ class TableList extends Component {
                 <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                   Cancel
                 </Button>
-                <Button className="btn btn-info btn-fill" type="submit" onClick={this.handleExport}>
+                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href="https://smarpas.xyz/exportTransaction.php?merchantid=1"}>
                   Export CSV
                 </Button>
               </Modal.Footer>
