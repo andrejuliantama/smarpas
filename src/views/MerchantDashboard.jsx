@@ -64,7 +64,9 @@ class MerchantDashboard extends Component {
         amount: parseInt(document.getElementById('nominal').value),
       })
       .then(function (response) {
-        console.log(response.json());
+      
+        document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+response.data.content;
+        document.getElementById("invoice").innerHTML = response.data.content;
       })
       .catch(function (error) {
         alert("Error: Amount diantara 1000 - 1.000.000");
@@ -183,6 +185,9 @@ class MerchantDashboard extends Component {
                     <Button className="btn btn-info btn-fill" type="submit" onClick={this.handleSubmit}>
                       Create
                     </Button>
+                    <img id='qr'></img>
+                    <p className="pull-left" id="invoice"></p>
+                    
                   </Modal.Footer>
                 </Modal>
                 <Button className="btn btn-success btn-fill" type="submit" onClick={this.showModalConfirm}>
@@ -218,7 +223,6 @@ class MerchantDashboard extends Component {
                     <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
                       Confirm
                     </Button>
-                    <p className="pull-left" id="msg"></p>
                   </Modal.Footer>
                 </Modal>
               </p>

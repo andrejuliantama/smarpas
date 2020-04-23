@@ -83,8 +83,8 @@ class UserDashboard extends Component {
     })
     .catch(function (error) {
       console.log(error.toJSON())
-      document.getElementById('msg').value=error.message;
-      console.log(error);
+      alert("Error: Saldo kurang atau Invoice sudah dibayar");
+        console.log(error);
     });
     event.preventDefault();
 
