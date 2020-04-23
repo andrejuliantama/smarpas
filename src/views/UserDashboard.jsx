@@ -20,7 +20,7 @@ import { Grid, Row, Col, Table, Button, Modal } from "react-bootstrap";
 import { th, td } from "variables/UserVariables.jsx";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
-
+import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 
 class UserDashboard extends Component {
   createLegend(json) {
@@ -33,6 +33,15 @@ class UserDashboard extends Component {
     }
     return legend;
   }
+  state = { show: false };
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
   render() {
     return (
       <div className="content">
@@ -45,14 +54,49 @@ class UserDashboard extends Component {
                 statsValue="Rp100.000"
                 statsIcon={"Pay a Transaction"}
                 statsIconText=
-                <Button size="lg" className="btn btn-info btn-fill pull-right" type="submit" onClick={event =>  window.location.href=''}>
+                <Button size="lg" className="btn btn-info btn-fill pull-right" type="submit" onClick={this.showModal}>
                   Pay
                 </Button>
               />
-            </Col>
-            <Col lg={3} sm={6}>
-              
-            </Col>
+              <Modal show={this.state.show}>
+                <Modal.Header>
+                  <Modal.Title>Top Up</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <FormInputs
+                    ncols = {["col-md-5" , "col-md-3" , "col-md-4"]}
+                    properties = {[
+                        {
+                            label : "NIM",
+                            type : "number",
+                            bsClass : "form-control",
+                            placeholder : "Nim",
+                        },
+                        {
+                            label : "Invoice ID",
+                            type : "text",
+                            bsClass : "form-control",
+                            placeholder : "Nominal"
+                        },
+                        {
+                            label : "PIN",
+                            type : "password",
+                            bsClass : "form-control",
+                            placeholder : "PIN"
+                        }
+                    ]}
+                  />
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
+                    Cancel
+                  </Button>
+                  <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
+                    Pay
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </Col> 
           </Row>
           <Row>
             <Col md={12}>

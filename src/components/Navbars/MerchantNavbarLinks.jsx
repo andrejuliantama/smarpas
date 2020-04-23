@@ -18,7 +18,7 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 
-class AdminNavbarLinks extends Component {
+class MerchantNavbarLinks extends Component {
   render() {
     const notification = (
       <div>
@@ -31,7 +31,7 @@ class AdminNavbarLinks extends Component {
     return (
       <div>
         <Nav pullRight>
-          <NavItem eventKey={3} href="/login/admin">
+          <NavItem eventKey={3} href="/login/merchant">
             Log out
           </NavItem>
         </Nav>
@@ -40,4 +40,4 @@ class AdminNavbarLinks extends Component {
   }
 }
 
-export default AdminNavbarLinks;
+export default MerchantNavbarLinks;

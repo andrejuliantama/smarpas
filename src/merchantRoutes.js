@@ -15,11 +15,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Dashboard from "views/UserDashboard.jsx";
-import UserProfile from "views/UserProfile.jsx";
-import UserList from "views/UserList.jsx";
-import History from "views/UserHistory.jsx";
-import Typography from "views/Typography.jsx";
+import Dashboard from "views/MerchantDashboard.jsx";
+import MerchantProfile from "views/MerchantProfile.jsx";
+
+import History from "views/MerchantHistory.jsx";
+
 
 
 const dashboardRoutes = [
@@ -28,21 +28,21 @@ const dashboardRoutes = [
     name: "Dashboard",
     icon: "pe-7s-graph",
     component: Dashboard,
-    layout: "/user"
+    layout: "/merchant"
   },
   {
     path: "/account",
     name: "Account",
     icon: "pe-7s-user",
-    component: UserProfile,
-    layout: "/user",
+    component: MerchantProfile,
+    layout: "/merchant",
   },
   {
     path: "/history",
     name: "History",
     icon: "pe-7s-note2",
     component: History,
-    layout: "/user"
+    layout: "/merchant"
   },
 ];
 
