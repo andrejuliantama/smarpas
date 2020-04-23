@@ -19,7 +19,6 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table, Button, Modal } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import { thUser, tdUser } from "variables/Variables.jsx";
-import StatsCard from "components/StatsCard/StatsCard";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 
 class UserList extends Component {
@@ -96,7 +95,7 @@ class UserList extends Component {
                 <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                   Cancel
                 </Button>
-                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
+                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href='https://google.com'}>
                   Top Up
                 </Button>
               </Modal.Footer>

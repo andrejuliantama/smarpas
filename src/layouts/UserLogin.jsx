@@ -42,7 +42,7 @@ class UserLogin extends Component{
                                             </div>
                                         </div>
 
-                                        <Button bsStyle="info" fill type="submit" href="#">
+                                        <Button bsStyle="info" fill type="submit" href="/user/dashboard">
                                             Login
                                         </Button>
                                         <p className="forgot-password text-right">

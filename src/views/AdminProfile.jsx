@@ -32,7 +32,7 @@ import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
 
-class UserProfile extends Component {
+class AdminProfile extends Component {
   render() {
     return (
       <div className="content">
@@ -59,16 +59,14 @@ class UserProfile extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Username",
-                          defaultValue: "rendi1",
-                          disabled: true
+                          defaultValue: "BangToyib"
                         },
                         {
-                          label: "NIM",
-                          type: "number",
+                          label: "Email address",
+                          type: "email",
                           bsClass: "form-control",
-                          placeholder: "NIM",
-                          defaultValue: "18217006",
-                          disabled: true
+                          placeholder: "Email",
+                          defaultValue: "toyib@smarpas.xyz"
                         }
                       ]}
                     />
@@ -80,16 +78,14 @@ class UserProfile extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "First name",
-                          defaultValue: "Rendi",
-                          disabled: true
+                          defaultValue: "Bang"
                         },
                         {
                           label: "Last name",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Last name",
-                          defaultValue: "Kristoper",
-                          disabled: true
+                          defaultValue: "Toyib"
                         }
                       ]}
                     />
@@ -102,7 +98,7 @@ class UserProfile extends Component {
                           bsClass: "form-control",
                           placeholder: "Home Adress",
                           defaultValue:
-                            "Jalan Buntu 15"
+                            "Jalan-in aja Dulu"
                         }
                       ]}
                     />
@@ -139,6 +135,7 @@ class UserProfile extends Component {
                 }
               />
             </Col>
+            
           </Row>
         </Grid>
       </div>
@@ -146,4 +143,4 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+export default AdminProfile;

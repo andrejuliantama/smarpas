@@ -29,14 +29,23 @@ import "./assets/css/pe-icon-7-stroke.css";
 
 import AdminLogin from "layouts/AdminLogin.jsx";
 import AdminLayout from "layouts/Admin.jsx";
+import MerchantLogin from "layouts/MerchantLogin.jsx";
+import UserLogin from "layouts/UserLogin.jsx";
+import UserLayout from "layouts/User.jsx";
 
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/admin" render={props => <AdminLayout {...props} />} />
       <Route path="/login/admin" render={props => <AdminLogin {...props} />} />
-      <Redirect from="/" to="/admin/dashboard" />
+      <Route path="/admin" render={props => <AdminLayout {...props} />} />
+      
+
+      <Route path="/login/merchant" render={props => <MerchantLogin {...props} />} />
+
+      <Route path="/login/user" render={props => <UserLogin {...props} />} />
+      <Route path="/user" render={props => <UserLayout {...props} />} />
+      {/* <Redirect from="/" to="/admin/dashboard" /> */}
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

@@ -15,13 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Dashboard from "views/Dashboard.jsx";
-import Account from "views/AdminProfile.jsx";
+import Dashboard from "views/UserDashboard.jsx";
+import UserProfile from "views/UserProfile.jsx";
 import UserList from "views/UserList.jsx";
-import MerchantList from "views/MerchantList.jsx";
+import History from "views/UserHistory.jsx";
 import Typography from "views/Typography.jsx";
-import Icons from "views/Icons.jsx";
-import Notifications from "views/Notifications.jsx";
+
 
 const dashboardRoutes = [
   {
@@ -29,50 +28,36 @@ const dashboardRoutes = [
     name: "Dashboard",
     icon: "pe-7s-graph",
     component: Dashboard,
-    layout: "/admin"
+    layout: "/user"
   },
   {
     path: "/account",
     name: "Account",
     icon: "pe-7s-user",
-    component: Account,
-    layout: "/admin",
+    component: UserProfile,
+    layout: "/user",
   },
   {
-    path: "/merchantlist",
-    name: "Merchant List",
+    path: "/history",
+    name: "History",
     icon: "pe-7s-note2",
-    component: MerchantList,
-    layout: "/admin"
+    component: History,
+    layout: "/user"
   },
   {
     path: "/userlist",
     name: "User List",
     icon: "pe-7s-users",
     component: UserList,
-    layout: "/admin"
+    layout: "/user"
   },
   {
     path: "/typography",
     name: "Typography",
     icon: "pe-7s-news-paper",
     component: Typography,
-    layout: "/admin"
+    layout: "/user"
   },
-  {
-    path: "/icons",
-    name: "Icons",
-    icon: "pe-7s-science",
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "pe-7s-bell",
-    component: Notifications,
-    layout: "/admin"
-  }
 ];
 
 export default dashboardRoutes;

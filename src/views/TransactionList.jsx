@@ -17,14 +17,12 @@
 */
 import React, { Component } from "react";
 import { Grid, Row, Col, Table, Button, Modal } from "react-bootstrap";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import StatsCard from "components/StatsCard/StatsCard";
 import Card from "components/Card/Card.jsx";
-import { thMerchant, tdMerchant } from "variables/Variables.jsx";
+import { thUser, tdUser } from "variables/Variables.jsx";
+import StatsCard from "components/StatsCard/StatsCard";
+import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 
-
-
-class TableList extends Component {
+class UserList extends Component {
   state = { show: false };
 
   showModal = () => {
@@ -34,37 +32,38 @@ class TableList extends Component {
   hideModal = () => {
     this.setState({ show: false });
   };
+
   render() {
     return (
       <div className="content">
         <Grid fluid>
-        <p className="copyright pull-left">
-          <Button
-            href="#"
-            target="_blank"
-            className="btn btn-info btn-fill"
-          >
-            Add Merchant
-          </Button>
-          
-          <Button
-            href="#"
-            target="_blank"
-            className="btn btn-danger btn-fill btn-info"
-          >
-            Delete Merchant
-          </Button>
-        </p>
-        <p className="copyright pull-right">
-          <Button
-            href="#"
-            target="_blank"
-            className="btn btn-success btn-fill"
-            onClick={this.showModal}
-          >
-            Export CSV
-          </Button>
-          <Modal show={this.state.show}>
+          <p className="copyright pull-left">
+            <button
+              href="#"
+              target="_blank"
+              className="btn btn-info btn-fill"
+            >
+              Add User
+            </button>
+            
+            <a
+              href="#"
+              target="_blank"
+              className="btn btn-danger btn-fill"
+            >
+              Delete User
+            </a>
+          </p>
+          <p className="copyright pull-right">
+            <Button
+              href=""
+              target="_blank"
+              className="btn btn-success btn-fill"
+              onClick={this.showModal}
+            >
+              Top Up
+            </Button>
+            <Modal show={this.state.show}>
               <Modal.Header>
                 <Modal.Title>Top Up</Modal.Title>
               </Modal.Header>
@@ -73,14 +72,14 @@ class TableList extends Component {
                   ncols = {["col-md-5" , "col-md-3" , "col-md-4"]}
                   properties = {[
                       {
-                          label : "ID",
+                          label : "NIM",
                           type : "number",
                           bsClass : "form-control",
                           placeholder : "Nim",
                       },
                       {
-                          label : "Nama Merchant",
-                          type : "text",
+                          label : "Nominal",
+                          type : "number",
                           bsClass : "form-control",
                           placeholder : "Nominal"
                       },
@@ -97,30 +96,32 @@ class TableList extends Component {
                 <Button className="btn btn-danger btn-fill" onClick={this.hideModal}>
                   Cancel
                 </Button>
-                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href=''}>
-                  Export CSV
+                <Button className="btn btn-info btn-fill" type="submit" onClick={event =>  window.location.href='https://google.com'}>
+                  Top Up
                 </Button>
               </Modal.Footer>
             </Modal>
-        </p>
+          </p>
+          
           <Row>
             <Col md={12}>
               <Card
-                title="Merchant List"
+                title="User List"
                 category="Institut Teknologi Bandung"
+                
                 ctTableFullWidth
                 ctTableResponsive
                 content={
                   <Table striped hover>
                     <thead>
                       <tr>
-                        {thMerchant.map((prop, key) => {
+                        {thUser.map((prop, key) => {
                           return <th key={key}>{prop}</th>;
                         })}
                       </tr>
                     </thead>
                     <tbody>
-                      {tdMerchant.map((prop, key) => {
+                      {tdUser.map((prop, key) => {
                         return (
                           <tr key={key}>
                             {prop.map((prop, key) => {
@@ -134,7 +135,6 @@ class TableList extends Component {
                 }
               />
             </Col>
-
           </Row>
         </Grid>
       </div>
@@ -142,4 +142,4 @@ class TableList extends Component {
   }
 }
 
-export default TableList;
+export default UserList;
